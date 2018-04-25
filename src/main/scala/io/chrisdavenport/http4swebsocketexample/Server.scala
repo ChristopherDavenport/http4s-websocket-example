@@ -57,7 +57,7 @@ object Server {
       .dequeue
       .interruptWhen(completed)
       .concurrently(
-          S.awakeEvery(1.seconds)
+          S.awakeDelay(1.seconds)
           .evalMap{_ => 
             counter.modify(_ + 1)
             .flatMap{ 
@@ -65,8 +65,11 @@ object Server {
                 messageQueue.enqueue1(Text(s"Currently $now"))
                 .flatMap{_ => 
                   if (now >= countTo){
-                    finalMessage.get.flatMap{t =>  messageQueue.enqueue1(Text(t.getOrElse("No Message Received")))} *>
+                    finalMessage.get.flatMap{t => 
+                      messageQueue.enqueue1(Text(t.getOrElse("No Message Received"))) 
+                    } *>
                     messageQueue.enqueue1(Close()) *>
+                    S.sleep[F](1.second).compile.drain *> // Avoids Race Condition On Getting Out of the Queue
                     completed.set(true)
                   } else {
                     F.delay(())
@@ -95,7 +98,7 @@ object Server {
       ws match {
         case Text(t, _) => 
           counter.get.flatMap{ count => 
-            F.delay(println("Count: $count " + t)) *> ref.setSync(t.some)
+            F.delay(println(s"Count: $count " + t)) *> ref.setSync(t.some)
           }
         case f => 
           counter.get.flatMap{ count => 
