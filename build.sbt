@@ -17,7 +17,7 @@ val pureConfigV = "0.9.1"
 val refinedV = "0.8.7"
 
 val specs2V = "4.0.3"
-val disciplineV = "0.8"
+val disciplineV = "0.11.0"
 val scShapelessV = "1.1.6"
 
 
