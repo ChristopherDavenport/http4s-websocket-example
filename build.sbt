@@ -4,7 +4,7 @@ lazy val core = project.in(file("."))
       name := "http4s-websocket-example"
     )
 
-val catsV = "1.1.0"
+val catsV = "1.6.0"
 val kittensV = "1.0.0-RC3"
 val catsEffectV = "0.10.1"
 val mouseV = "0.16"
