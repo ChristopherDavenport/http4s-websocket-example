@@ -13,7 +13,7 @@ val fs2V = "0.10.3"
 val http4sV = "0.18.9"
 val circeV = "0.9.3"
 val doobieV = "0.5.1"
-val pureConfigV = "0.9.1"
+val pureConfigV = "0.9.2"
 val refinedV = "0.8.7"
 
 val specs2V = "4.0.3"
