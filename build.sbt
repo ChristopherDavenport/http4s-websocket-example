@@ -14,7 +14,7 @@ val http4sV = "0.18.9"
 val circeV = "0.9.3"
 val doobieV = "0.5.1"
 val pureConfigV = "0.9.1"
-val refinedV = "0.8.7"
+val refinedV = "0.9.12"
 
 val specs2V = "4.0.3"
 val disciplineV = "0.11.1"
